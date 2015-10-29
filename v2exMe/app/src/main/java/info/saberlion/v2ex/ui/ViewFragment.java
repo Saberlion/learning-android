@@ -1,0 +1,17 @@
+package info.saberlion.v2ex.ui;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import info.saberlion.v2exme.R;
+
+public class ViewFragment extends Fragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+        return inflater.inflate(R.layout.fragment_view, container, false);
+    }
+}

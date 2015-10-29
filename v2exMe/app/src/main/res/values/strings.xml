@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">v2exMe</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="v_hot">最热</string>
+    <string name="v_new">最新</string>
+    <string name="v_node">节点</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_node_topics">NodeTopicsActivity</string>
+    <string name="title_activity_topic_info">话题详情</string>
+    <string name="title_activity_about">关于</string>
+</resources>
