@@ -1,4 +1,4 @@
-package info.saberlion.zhihudaily;
+package info.saberlion.zhihudaily.ui;
 
 import android.content.Context;
 import android.content.Intent;

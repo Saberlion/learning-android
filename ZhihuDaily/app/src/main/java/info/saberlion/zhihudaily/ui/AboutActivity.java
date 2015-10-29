@@ -1,9 +1,11 @@
-package info.saberlion.zhihudaily;
+package info.saberlion.zhihudaily.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.TextView;
+
+import info.saberlion.zhihudaily.R;
 
 public class AboutActivity extends AppCompatActivity {
 

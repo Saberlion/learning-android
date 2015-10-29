@@ -1,4 +1,4 @@
-package info.saberlion.zhihudaily;
+package info.saberlion.zhihudaily.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import info.saberlion.zhihudaily.R;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     ViewPager viewPager;
     DatePagerAdapter datePagerAdapter;
     TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

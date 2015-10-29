@@ -1,4 +1,4 @@
-package info.saberlion.zhihudaily;
+package info.saberlion.zhihudaily.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
