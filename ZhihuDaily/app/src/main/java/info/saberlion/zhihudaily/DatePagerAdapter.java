@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class DatePagerAdapter extends FragmentPagerAdapter {
 
-    String[] DateArray = {"abc", "bcd", "efg"};
+    String[] DateArray = {"abc", "bcd", "efg","efg"};
 
     public DatePagerAdapter(FragmentManager fm) {
         super(fm);
