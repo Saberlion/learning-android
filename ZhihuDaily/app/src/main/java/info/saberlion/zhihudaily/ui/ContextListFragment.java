@@ -19,8 +19,6 @@ import info.saberlion.zhihudaily.R;
  */
 
 public class ContextListFragment extends Fragment {
-
-
     SwipeRefreshLayout swipeRefreshLayout;
 
     ContextListAdapter adapter;

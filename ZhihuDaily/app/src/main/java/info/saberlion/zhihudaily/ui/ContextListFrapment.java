@@ -16,7 +16,7 @@ import info.saberlion.zhihudaily.model.ListItem;
 
 public class ContextListFrapment extends Fragment {
 
-    final static String TAG = "ContextListFrapment";
+    final static String TAG = ContextListFrapment.class.getName();
 
     SwipeRefreshLayout swipeRefreshLayout;
 
