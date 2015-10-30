@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    final static String TAG = "MainActivity";
     ViewPager viewPager;
     DatePagerAdapter datePagerAdapter;
     TabLayout tabLayout;
