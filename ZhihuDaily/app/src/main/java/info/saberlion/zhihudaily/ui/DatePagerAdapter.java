@@ -17,7 +17,7 @@ public class DatePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new Fragment();
+        return new ContextListFragment();
     }
 
     @Override
