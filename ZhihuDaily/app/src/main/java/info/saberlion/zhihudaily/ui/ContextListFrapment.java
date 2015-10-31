@@ -9,6 +9,7 @@ import android.view.View;
 import com.android.volley.RequestQueue;
 
 import info.saberlion.zhihudaily.model.ListItem;
+import info.saberlion.zhihudaily.net.NetController;
 
 /**
  * Created by Arthur on 2015/10/29.
@@ -22,7 +23,7 @@ public class ContextListFrapment extends Fragment {
 
     ContextListAdapter adapter;
 
-    RequestQueue mRequestQueue;
+    RequestQueue mRequestQueue = NetController.getInstance().getRequestQueue();
 
     DatePagerAdapter datePagerAdapter;
 
