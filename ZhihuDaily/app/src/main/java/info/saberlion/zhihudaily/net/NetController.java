@@ -1,6 +1,6 @@
 package info.saberlion.zhihudaily.net;
 
-import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -11,7 +11,7 @@ import com.android.volley.toolbox.Volley;
 /**
  * Created by Arthur on 2015/10/30.
  */
-public class NetController extends Application {
+public class NetController{
     public static final String TAG = NetController.class
             .getSimpleName();
 
@@ -20,28 +20,33 @@ public class NetController extends Application {
 
     private static NetController mInstance;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
+    private NetController(Context context){
+        mRequestQueue = Volley.newRequestQueue(context);
+        mImageLoader = new ImageLoader(mRequestQueue,new LruBitmapCache());
     }
+    public static NetController createInstance(Context context) {
+        if (context != null) {
+            if (mInstance == null) {
+                mInstance = new NetController(context);
+            } else {
+                throw new IllegalArgumentException("Context must be set");
+            }
+        }
+        return mInstance;
+    }
+
 
     public static synchronized NetController getInstance() {
         return mInstance;
     }
 
     public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-
         return mRequestQueue;
     }
 
     public ImageLoader getImageLoader() {
-        getRequestQueue();
-        if (mImageLoader == null) {
-            mImageLoader = new ImageLoader(this.mRequestQueue,
+        if (this.mImageLoader == null) {
+            this.mImageLoader = new ImageLoader(this.mRequestQueue,
                     new LruBitmapCache());
         }
         return this.mImageLoader;

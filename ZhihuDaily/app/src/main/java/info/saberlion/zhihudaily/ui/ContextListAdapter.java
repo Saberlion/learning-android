@@ -5,9 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import info.saberlion.zhihudaily.R;
 
 import java.util.List;
+
+import info.saberlion.zhihudaily.R;
 import info.saberlion.zhihudaily.model.ListItem;
 
 /**

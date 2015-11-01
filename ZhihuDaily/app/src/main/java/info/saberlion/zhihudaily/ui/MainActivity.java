@@ -5,6 +5,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import info.saberlion.zhihudaily.R;
+import info.saberlion.zhihudaily.net.NetController;
 import info.saberlion.zhihudaily.utils.IntentUtils;
 
 public class MainActivity extends AppCompatActivity
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        NetController netController = NetController.createInstance(getApplicationContext());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,4 +127,28 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+     private class DatePagerAdapter extends FragmentPagerAdapter {
+
+        String[] DateArray = {"abc", "bcd", "efg","fgh","ghi","hij"};
+
+        public DatePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new ContextListFragment();
+        }
+
+        @Override
+        public int getCount() {
+            return DateArray.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return DateArray[position];
+        }
+
+    }
 }
