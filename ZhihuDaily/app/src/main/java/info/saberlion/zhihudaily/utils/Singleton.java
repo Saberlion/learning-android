@@ -1,4 +1,4 @@
-package info.saberlion.zhihudaily.net;
+package info.saberlion.zhihudaily.utils;
 
 /**
  * Created by fxre on 2015/10/31.

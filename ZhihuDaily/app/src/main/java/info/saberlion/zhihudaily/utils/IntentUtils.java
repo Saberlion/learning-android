@@ -1,7 +1,10 @@
-package info.saberlion.zhihudaily.ui;
+package info.saberlion.zhihudaily.utils;
 
 import android.content.Context;
 import android.content.Intent;
+
+import info.saberlion.zhihudaily.ui.AboutActivity;
+import info.saberlion.zhihudaily.ui.MainActivity;
 
 /**
  * Created by Arthur on 2015/10/29.

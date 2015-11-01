@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import info.saberlion.zhihudaily.R;
+import info.saberlion.zhihudaily.utils.IntentUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
