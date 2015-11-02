@@ -1,6 +1,7 @@
 package info.saberlion.zhihudaily.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,14 +57,40 @@ public class ContextListFragment extends Fragment {
         View view = inflater.inflate(R.layout.swipe_refresh_layout,container,false);
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-        //       swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+
         mContextListAdapter = new ContextListAdapter();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager =new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mContextListAdapter);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        getRes();
+
+                    }
+                }, 6000);
+            }
+        });
+
+        getRes();
+        return view;
+    }
+
+
+    private void getRes(){
         GsonRequest<DailyList> request = new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
                 new Response.Listener<DailyList>() {
                     @Override
@@ -71,6 +98,7 @@ public class ContextListFragment extends Fragment {
                         Log.d(TAG,response.toString());
                         mNewsList=response.stories;
                         mContextListAdapter.setItems(response.stories);
+                        swipeRefreshLayout.setRefreshing(false);
 
                     }
                 },
@@ -78,13 +106,13 @@ public class ContextListFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
 
         mRequestQueue.add(request);
-        return view;
+        swipeRefreshLayout.setRefreshing(false);
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
