@@ -15,16 +15,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import info.saberlion.zhihudaily.R;
 import info.saberlion.zhihudaily.api.ZhihuApi;
+import info.saberlion.zhihudaily.model.DailyList;
 import info.saberlion.zhihudaily.model.ListItem;
+import info.saberlion.zhihudaily.net.GsonRequest;
 import info.saberlion.zhihudaily.net.NetController;
 
 /**
@@ -35,6 +34,8 @@ public class ContextListFragment extends Fragment {
 
     final static String TAG = "ContextListFragment";
 
+
+
     private List<ListItem> mNewsList = new ArrayList<>();
 
     SwipeRefreshLayout swipeRefreshLayout;
@@ -42,6 +43,7 @@ public class ContextListFragment extends Fragment {
     ContextListAdapter mContextListAdapter;
 
     RequestQueue mRequestQueue;
+
 
 
     @Override
@@ -63,11 +65,13 @@ public class ContextListFragment extends Fragment {
         recyclerView.setAdapter(mContextListAdapter);
 
         mRequestQueue = NetController.getInstance().getRequestQueue();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(ZhihuApi.getDailyNews("20151001"), null,
-                new Response.Listener<JSONObject>() {
+        GsonRequest<DailyList> request = new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
+                new Response.Listener<DailyList>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
+                    public void onResponse(DailyList response) {
+                        Log.d(TAG,response.toString());
+                        mContextListAdapter.setItems(response.stories);
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -77,7 +81,7 @@ public class ContextListFragment extends Fragment {
                     }
                 });
 
-        mRequestQueue.add(jsonObjectRequest);
+        mRequestQueue.add(request);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
