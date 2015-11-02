@@ -16,14 +16,19 @@ public class NetController{
             .getSimpleName();
 
     private RequestQueue mRequestQueue;
+
     private ImageLoader mImageLoader;
+
+    private Context mContext;
 
     private static NetController mInstance;
 
     private NetController(Context context){
-        mRequestQueue = Volley.newRequestQueue(context);
+        mContext = context;
+        mRequestQueue = Volley.newRequestQueue(mContext);
         mImageLoader = new ImageLoader(mRequestQueue,new LruBitmapCache());
     }
+
     public static NetController createInstance(Context context) {
         if (context != null) {
             if (mInstance == null) {

@@ -61,29 +61,27 @@ public class ContextListFragment extends Fragment {
                 android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_green_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Log.i(TAG,"swipeRefreshLayout.setOnRefreshListener");
+                        getRes();
+                    }
+                }, 1000);
+            }
+        });
 
         mContextListAdapter = new ContextListAdapter();
+
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager =new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mContextListAdapter);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                // TODO Auto-generated method stub
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        getRes();
-
-                    }
-                }, 6000);
-            }
-        });
 
         getRes();
         return view;
@@ -99,7 +97,6 @@ public class ContextListFragment extends Fragment {
                         mNewsList=response.stories;
                         mContextListAdapter.setItems(response.stories);
                         swipeRefreshLayout.setRefreshing(false);
-
                     }
                 },
                 new Response.ErrorListener() {
