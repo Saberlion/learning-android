@@ -34,8 +34,6 @@ public class ContextListFragment extends Fragment {
 
     final static String TAG = "ContextListFragment";
 
-
-
     private List<ListItem> mNewsList = new ArrayList<>();
 
     SwipeRefreshLayout swipeRefreshLayout;
@@ -49,6 +47,7 @@ public class ContextListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRequestQueue = NetController.getInstance().getRequestQueue();
     }
 
     @Nullable
@@ -64,12 +63,13 @@ public class ContextListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mContextListAdapter);
 
-        mRequestQueue = NetController.getInstance().getRequestQueue();
+
         GsonRequest<DailyList> request = new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
                 new Response.Listener<DailyList>() {
                     @Override
                     public void onResponse(DailyList response) {
                         Log.d(TAG,response.toString());
+                        mNewsList=response.stories;
                         mContextListAdapter.setItems(response.stories);
 
                     }
@@ -82,7 +82,7 @@ public class ContextListFragment extends Fragment {
                 });
 
         mRequestQueue.add(request);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 
     @Override
