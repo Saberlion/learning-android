@@ -27,11 +27,11 @@
             >
 
         </activity>
-        <activity android:name=".ui.WebviewActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            >
+        <activity android:name=".ui.WebviewActivity">
 
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -94,7 +94,7 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
                 case R.id.pic:
 
                 case R.id.title:
-                    IntentUtils.openWebView(mContext,"你好","http://saberlion.info/");
+                    IntentUtils.openWebView(v.getContext(),"你好","http://www.zhihu.com/question/36872154");
                     break;
 
             }
