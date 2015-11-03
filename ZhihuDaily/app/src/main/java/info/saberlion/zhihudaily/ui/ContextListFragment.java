@@ -75,7 +75,7 @@ public class ContextListFragment extends Fragment {
             }
         });
 
-        mContextListAdapter = new ContextListAdapter();
+        mContextListAdapter = new ContextListAdapter(getContext());
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager =new LinearLayoutManager(getActivity());
@@ -89,7 +89,8 @@ public class ContextListFragment extends Fragment {
 
 
     private void getRes(){
-        GsonRequest<DailyList> request = new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
+        GsonRequest<DailyList> request =
+                new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
                 new Response.Listener<DailyList>() {
                     @Override
                     public void onResponse(DailyList response) {

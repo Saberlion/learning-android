@@ -20,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Calendar;
+
 import info.saberlion.zhihudaily.R;
 import info.saberlion.zhihudaily.net.NetController;
 import info.saberlion.zhihudaily.utils.IntentUtils;
@@ -145,7 +147,10 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            return new ContextListFragment();
+            Fragment fragment = new ContextListFragment();
+            Calendar date = Calendar.getInstance();
+
+            return fragment;
         }
 
         @Override

@@ -1,6 +1,8 @@
 package info.saberlion.zhihudaily.ui;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +18,29 @@ import java.util.List;
 import info.saberlion.zhihudaily.R;
 import info.saberlion.zhihudaily.model.ListItem;
 import info.saberlion.zhihudaily.net.NetController;
+import info.saberlion.zhihudaily.utils.IntentUtils;
 
 /**
  * Created by Arthur on 2015/10/29.
  */
 public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.ViewHolder> {
 
+
+    final static String TAG = ContextListAdapter.class.getName();
+
+    Context mContext;
+
     List<ListItem> items = new ArrayList<ListItem>();
+
     RequestQueue requestQueue = NetController.getInstance().getRequestQueue();
+
     ImageLoader imageLoader = NetController.getInstance().getImageLoader();
+
+    public ContextListAdapter(Context mContext) {
+        this.mContext = mContext;
+    }
+
+
     public void setItems(List<ListItem> items) {
         this.items = items;
         notifyDataSetChanged();
@@ -33,7 +49,6 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-
         return new ViewHolder(view);
     }
 
@@ -68,13 +83,21 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
             super(itemView);
             imageView = (NetworkImageView) itemView.findViewById(R.id.pic);
             textView = (TextView) itemView.findViewById(R.id.title);
-
-
+            imageView.setOnClickListener(this);
+            textView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            Log.d(TAG,"onClick"+v.getId());
+            switch (v.getId()) {
+                case R.id.pic:
 
+                case R.id.title:
+                    IntentUtils.openWebView(mContext,"你好","http://saberlion.info/");
+                    break;
+
+            }
         }
     }
 }
