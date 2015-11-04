@@ -16,15 +16,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import info.saberlion.zhihudaily.R;
 import info.saberlion.zhihudaily.net.NetController;
 import info.saberlion.zhihudaily.utils.IntentUtils;
+import info.saberlion.zhihudaily.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -137,30 +143,67 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-     private class DatePagerAdapter extends FragmentPagerAdapter {
 
-        String[] DateArray = {"abc", "bcd", "efg","fgh","ghi","hij"};
+    /**
+     * 实现再按一次退出提醒
+     */
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 3000) {
+                ToastUtils.show(this,"再按一次退出",3000);
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private class DatePagerAdapter extends FragmentPagerAdapter {
+
+        List<String>titles = new ArrayList<String>();
+        List<String>DateArray= new ArrayList<String>();
 
         public DatePagerAdapter(FragmentManager fm) {
             super(fm);
+            for(int i = 0;i <7;i++){
+                Calendar date = Calendar.getInstance();
+                date.add(Calendar.DAY_OF_YEAR, 1 - i);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
+                String dateStr = simpleDateFormat.format(date.getTime());
+                if(i == 0){
+                    titles.add("今日热点");
+                }
+                else{
+                    titles.add(dateStr);
+                }
+                DateArray.add(dateStr);
+            }
         }
 
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = new ContextListFragment();
-            Calendar date = Calendar.getInstance();
-
+            Bundle bundle = new Bundle();
+            bundle.putString("date",DateArray.get(position));
+            fragment.setArguments(bundle);
             return fragment;
         }
 
         @Override
         public int getCount() {
-            return DateArray.length;
+            return DateArray.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return DateArray[position];
+            return titles.get(position);
         }
 
     }

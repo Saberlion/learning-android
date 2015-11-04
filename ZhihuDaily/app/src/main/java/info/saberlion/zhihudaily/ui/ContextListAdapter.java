@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.saberlion.zhihudaily.R;
+import info.saberlion.zhihudaily.api.ZhihuApi;
 import info.saberlion.zhihudaily.model.ListItem;
 import info.saberlion.zhihudaily.net.NetController;
 import info.saberlion.zhihudaily.utils.IntentUtils;
@@ -55,7 +56,6 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ListItem item = items.get(position);
-
         holder.setItem(item);
         holder.imageView.setImageUrl(item.images.get(0), imageLoader);
         holder.textView.setText(item.title);
@@ -71,7 +71,6 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
     public class ViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
         private final NetworkImageView imageView;
         private final TextView textView;
-
         public void setItem(ListItem item) {
             this.item = item;
         }
@@ -94,7 +93,9 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
                 case R.id.pic:
 
                 case R.id.title:
-                    IntentUtils.openWebView(v.getContext(),"你好","http://www.zhihu.com/question/36872154");
+                    String topic_title = item.title;
+                    String openUrl = ZhihuApi.getNewsContent(item.id);
+                    IntentUtils.openWebView(v.getContext(),topic_title,openUrl);
                     break;
 
             }

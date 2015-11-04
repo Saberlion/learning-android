@@ -43,12 +43,18 @@ public class ContextListFragment extends Fragment {
 
     RequestQueue mRequestQueue;
 
-
+    String date;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRequestQueue = NetController.getInstance().getRequestQueue();
+        if(savedInstanceState == null){
+            mRequestQueue = NetController.getInstance().getRequestQueue();
+            Bundle bundle = getArguments();
+            date = bundle.getString("date");
+        }
+
+
     }
 
     @Nullable
@@ -90,7 +96,7 @@ public class ContextListFragment extends Fragment {
 
     private void getRes(){
         GsonRequest<DailyList> request =
-                new GsonRequest<DailyList>(ZhihuApi.getDailyNews("20151101"),DailyList.class,
+                new GsonRequest<DailyList>(ZhihuApi.getDailyNews(date),DailyList.class,
                 new Response.Listener<DailyList>() {
                     @Override
                     public void onResponse(DailyList response) {

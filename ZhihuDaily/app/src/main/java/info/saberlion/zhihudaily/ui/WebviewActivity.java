@@ -36,6 +36,7 @@ public class WebviewActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mWebView = (WebView) findViewById(R.id.webView);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -72,8 +73,6 @@ public class WebviewActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-
-
         if (mWebView != null)
         {
             mLayout.removeView(mWebView);

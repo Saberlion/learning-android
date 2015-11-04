@@ -4,6 +4,19 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="colorPrimary">@color/lightseagreen</item>
+        <item name="colorPrimaryDark">@color/deepskyblue</item>
+        <item name="colorAccent">@color/mediumseagreen</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/deepskyblue</item>
+        <item name="colorPrimaryDark">@color/darkturquoise</item>
+        <item name="colorAccent">@color/mediumseagreen</item>
+        <item name="android:textColorPrimary">@color/snow</item>
+        <item name="android:colorBackground">@color/background_material_light</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 </resources>
