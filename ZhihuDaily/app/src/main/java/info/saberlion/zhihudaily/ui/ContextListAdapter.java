@@ -31,7 +31,7 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
 
     Context mContext;
 
-    List<ListItem> items = new ArrayList<ListItem>();
+    List<ListItem> items = new ArrayList<>();
 
     RequestQueue requestQueue = NetController.getInstance().getRequestQueue();
 
