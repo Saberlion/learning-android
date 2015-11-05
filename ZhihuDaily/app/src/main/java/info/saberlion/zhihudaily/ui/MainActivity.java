@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Locale;
 
 import info.saberlion.zhihudaily.R;
-import info.saberlion.zhihudaily.net.NetController;
 import info.saberlion.zhihudaily.utils.IntentUtils;
 import info.saberlion.zhihudaily.utils.ToastUtils;
 
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate : ");
-        NetController netController = NetController.createInstance(getApplicationContext());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -167,8 +165,8 @@ public class MainActivity extends AppCompatActivity
 
     private class DatePagerAdapter extends FragmentPagerAdapter {
 
-        List<String>titles = new ArrayList<String>();
-        List<String>DateArray= new ArrayList<String>();
+        List<String> titles = new ArrayList<>();
+        List<String> DateArray = new ArrayList<>();
 
         public DatePagerAdapter(FragmentManager fm) {
             super(fm);
