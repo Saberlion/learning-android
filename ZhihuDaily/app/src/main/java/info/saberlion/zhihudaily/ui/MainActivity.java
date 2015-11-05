@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime) > 3000) {
-                ToastUtils.show(this,"再按一次退出",3000);
+                ToastUtils.showShort(R.string.exit_toast);
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
