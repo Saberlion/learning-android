@@ -1,5 +1,6 @@
 package info.saberlion.zhihudaily.ui;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
@@ -39,6 +40,9 @@ public abstract class ToolbarActivity extends BaseActivity {
         if (canBack()) {
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            mAppBarLayout.setElevation(10.6f);
         }
 
     }
