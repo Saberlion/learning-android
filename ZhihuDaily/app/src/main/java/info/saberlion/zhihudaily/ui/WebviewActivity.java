@@ -30,6 +30,7 @@ public class WebviewActivity extends AppCompatActivity {
     Toolbar mToolbar;
     LinearLayout mLayout;
     String mUrl, mTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +41,15 @@ public class WebviewActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         mUrl = getIntent().getStringExtra(EXTRA_URL);
         mTitle = getIntent().getStringExtra(EXTRA_TITLE);
-        mLayout= (LinearLayout) findViewById(R.id.webView_layout);
+        mLayout = (LinearLayout) findViewById(R.id.webView_layout);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         mWebView.setWebChromeClient(new ChromeClient());
         mWebView.setWebViewClient(new ViewClient());
         mWebView.getSettings().setLoadWithOverviewMode(true);
@@ -76,8 +80,7 @@ public class WebviewActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (mWebView != null)
-        {
+        if (mWebView != null) {
             mLayout.removeView(mWebView);
             mWebView.removeAllViews();
             mWebView.destroy();
@@ -106,7 +109,8 @@ public class WebviewActivity extends AppCompatActivity {
             mProgressBar.setProgress(newProgress);
             if (newProgress == 100) {
                 mProgressBar.setVisibility(View.GONE);
-            } else if (newProgress != 100) {
+            }
+            else {
                 mProgressBar.setVisibility(View.VISIBLE);
             }
         }

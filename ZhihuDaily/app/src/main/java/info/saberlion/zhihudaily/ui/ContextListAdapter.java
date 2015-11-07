@@ -49,7 +49,7 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -67,10 +67,10 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
     }
 
 
-
-    public class ViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final NetworkImageView imageView;
         private final TextView textView;
+
         public void setItem(ListItem item) {
             this.item = item;
         }
@@ -88,14 +88,14 @@ public class ContextListAdapter extends RecyclerView.Adapter<ContextListAdapter.
 
         @Override
         public void onClick(View v) {
-            Log.d(TAG,"onClick"+v.getId());
+            Log.d(TAG, "onClick" + v.getId());
             switch (v.getId()) {
                 case R.id.pic:
 
                 case R.id.title:
                     String topic_title = item.title;
                     String openUrl = ZhihuApi.getNewsContent(item.id);
-                    IntentUtils.openWebView(v.getContext(),topic_title,openUrl);
+                    IntentUtils.openWebView(v.getContext(), topic_title, openUrl);
                     break;
 
             }
